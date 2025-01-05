@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rest_api_example/user_model.dart'; // Make sure this is the correct import for your data model
-import 'package:rest_api_example/api_service.dart'; // Make sure this is the correct import for your API service
+import 'package:rest_api_example/user_model.dart';
+import 'package:rest_api_example/api_service.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -18,7 +18,6 @@ class _HomeState extends State<Home> {
     _getData();
   }
 
-  // Method to fetch the data
   void _getData() async {
     try {
       var users = await ApiService().getUsers();
@@ -36,8 +35,14 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('REST API Example'),
+        title: const Text(
+          'REST API Example',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
         backgroundColor: Colors.blue,
+        centerTitle: true,
       ),
       body: _userModel == null || _userModel!.isEmpty
           ? const Center(
@@ -47,6 +52,11 @@ class _HomeState extends State<Home> {
               itemCount: _userModel!.length,
               itemBuilder: (context, index) {
                 return Card(
+                  margin: EdgeInsets.all(1.0),
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
                   child: Column(
                     children: [
                       Row(
